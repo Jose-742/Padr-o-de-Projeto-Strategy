@@ -1,4 +1,4 @@
-# Padrão de Projeto Strategy 
+# Padrões de Projeto - Strategy 
 
 O padrão Strategy é um dos padrões de projeto mais comuns e populares. Ele faz parte da categoria de padrões de comportamento e é usado para permitir que você selecione entre diferentes algoritmos para realizar uma tarefa específica.
 
