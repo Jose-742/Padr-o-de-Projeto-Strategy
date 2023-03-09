@@ -11,21 +11,19 @@ import java.util.List;
 
 import com.mycompany.strategy.model.Boleto;
 
-public class LeituraRetornoBradesco implements LeituraRetorno {
+public class LeituraRetornoBradesco{
 
-	@Override
-	public List<Boleto> lerArquivo(String nomeArquivo) {
+	public static List<Boleto> lerArquivo(String nomeArquivo) {
 		System.out.println("Lendo arquivo Banco Bradesco: " + nomeArquivo);
 
 		var listaBoletos = new LinkedList<Boleto>();
 
 		try {
 			var linhas = Files.readAllLines(
-					Paths.get("E:/JAVA/Ws-eclipse-2/Strategy/src/main/java/com/mycompany/strategy/bradesco-1.csv"));
+					Paths.get("E:/JAVA/Ws-eclipse-2/Padr-o-de-Projeto-Strategy/src/main/java/com/mycompany/strategy/bradesco-1.csv"));
 			for (String linha : linhas) {
 				var vetor = linha.split(";");
 
-				var formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 				var formatterDataTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
 				var boleto = new Boleto();
@@ -34,7 +32,7 @@ public class LeituraRetornoBradesco implements LeituraRetorno {
 				boleto.setAgencia(vetor[2]);
 				boleto.setContaBancaria(vetor[3]);
 
-				boleto.setDataVencimento(LocalDate.parse(vetor[4], formatoData));
+				boleto.setDataVencimento(LocalDate.parse(vetor[4], ProcessarBoleto.formatoData));
 				boleto.setDataPagamento(LocalDateTime.parse(vetor[5], formatterDataTime));
 				boleto.setCpfCliente(vetor[6]);
 				boleto.setValor(Double.parseDouble(vetor[7]));
